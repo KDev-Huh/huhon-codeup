@@ -22,14 +22,14 @@ int main()
     int n;
     
     std::cin >> n;
-    std::vector<int> result(n, 1);
+    std::vector<int> result(n+1, 1);
     
     int num;
     for(int i = 1; i <= n; i++) {
-        result[i] = result[i-1] + i; 
+        result[i] = (result[i-1] + i)%137;
     }
     
-    printf("%d", result[n]%137);
+    std::cout << result[n];
     
     return 0;
 }
