@@ -34,23 +34,23 @@ int main() {
     
     scanf("%d %d", &k, &n);
     
-    std::vector<unsigned long long int> str(n+1);
-    std::vector<unsigned long long int> memo(n+1,0);
+    std::vector<int> str(n+1);
+    std::vector<int> memo(n+1,0);
     
     for(int i = 1; i <= k; i++) {
         std::cin >> str[i];
-        memo[i]=memo[i-1] + str[i]%1000007;
+        memo[i]=(memo[i-1] + str[i])%100007;
     }
     
     for(int i = k+1; i <= n; i++) {
-        str[i] = memo[i-1] - memo[i-k-1]%1000007;
-        memo[i]=memo[i-1] + str[i]%1000007;
+        str[i] = memo[i-1] - memo[i-k-1];
+        memo[i] = memo[i-1] + str[i]%100007;
     }
     
     // for(int i = 1; i <= n; i++) {
     //     printf("%d ", memo[i]);
     // }
-    std::cout << str[n]%1000007;
+    std::cout << str[n]%100007;
     
     return 0;
 }
