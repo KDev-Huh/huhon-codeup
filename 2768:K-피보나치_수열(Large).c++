@@ -35,16 +35,18 @@ int main() {
     scanf("%d %d", &k, &n);
     
     std::vector<int> str(n+1);
-    std::vector<int> memo(n+1,0);
     
     for(int i = 1; i <= k; i++) {
         std::cin >> str[i];
-        memo[i]=(memo[i-1] + str[i])%100007;
     }
     
+    long long int hap = 0;
     for(int i = k+1; i <= n; i++) {
-        str[i] = memo[i-1] - memo[i-k-1];
-        memo[i] = memo[i-1] + str[i]%100007;
+        hap = 0;
+        for(int j = i-k; j < i; j++) {
+            hap+=str[j]%100007;
+        }
+        str[i] = hap%100007;
     }
     
     // for(int i = 1; i <= n; i++) {
