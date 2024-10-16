@@ -27,32 +27,25 @@
 // k-피보나치 수열의 값의 n번째 항에 100,007을 나눈 나머지를 출력한다.
 
 #include <iostream>
-#include <vector>
 
 int main() {
-    int k, n;
-    
+    int n, k;
     scanf("%d %d", &k, &n);
     
-    std::vector<int> str(n+1);
+    int arr[1000000];
     
-    for(int i = 1; i <= k; i++) {
-        std::cin >> str[i];
+    int total = 0;
+    for(int i = 0; i < k; i++) {
+        scanf("%d", &arr[i]);
+        total = (total + arr[i])%100007;
+    }
+    arr[k] = total;
+    
+    for(int i = k + 1; i < n; i++) {
+        arr[i] = (arr[i-1]*2 - arr[i-k-1])%100007;
     }
     
-    long long int hap = 0;
-    for(int i = k+1; i <= n; i++) {
-        hap = 0;
-        for(int j = i-k; j < i; j++) {
-            hap+=str[j]%100007;
-        }
-        str[i] = hap%100007;
-    }
-    
-    // for(int i = 1; i <= n; i++) {
-    //     printf("%d ", memo[i]);
-    // }
-    std::cout << str[n]%100007;
+    printf("%d", arr[n-1]);
     
     return 0;
 }
