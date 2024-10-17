@@ -25,7 +25,6 @@
 
 // 출력
 // k-피보나치 수열의 값의 n번째 항에 100,007을 나눈 나머지를 출력한다.
-
 #include <iostream>
 
 int main() {
@@ -42,7 +41,7 @@ int main() {
     arr[k] = total;
     
     for(int i = k + 1; i < n; i++) {
-        arr[i] = (arr[i-1]*2 - arr[i-k-1])%100007;
+        arr[i] = (arr[i-1]*2 - arr[i-k-1] + 100007)%100007;
     }
     
     printf("%d", arr[n-1]);
