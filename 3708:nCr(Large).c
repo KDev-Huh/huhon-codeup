@@ -21,6 +21,9 @@
 // 출력 예시
 // 10
 
+
+// 동적계획법
+
 #include <stdio.h>
 
 int DP[10001][10001];
@@ -40,6 +43,31 @@ int main()
     }
     
     printf("%d", DP[n][r]);
+
+    return 0;
+}
+
+
+// 메모이제이션
+
+#include <stdio.h>
+
+int memo[10001][10001];
+
+int nCr(int n, int r) {
+    if(memo[n][r]) return memo[n][r];
+    if(n==r) return memo[n][r] = 1;
+    if(r==1) return memo[n][r] = n;
+    return memo[n][r] = (nCr(n-1, r-1) + nCr(n-1, r))%100000007;
+}
+
+int main()
+{
+    int n, r;
+    
+    scanf("%d %d", &n, &r);
+    
+    printf("%d", nCr(n, r));
 
     return 0;
 }
